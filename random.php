@@ -4,7 +4,7 @@ session_start();
 function generateLotteryNumbers($num) {
     $numbers = [];
     while (count($numbers) < $num) {
-        $rand = sprintf('%03d', rand(0, 999)); //สุ่มเลข3หลัก ถ้าไม่ครบ3ตัวใส่ 0 ไว้เข้างหน้า
+        $rand = sprintf('%03d', rand(0, 999)); //สุ่มเลข3หลัก ถ้าไม่ครบ3ตัวใส่ 0 ไว้ข้างหน้า
         if (!in_array($rand, $numbers)) {
             $numbers[] = $rand;
         }
@@ -30,9 +30,12 @@ function getRandomPrizes() {
     return $prizes;
 }
 
+// ตรวจสอบว่าคำขอเป็น POST และขอการสุ่มรางวัล
+$input = json_decode(file_get_contents('php://input'), true);
 
-if (isset($_POST['generate_prizes'])) {
+if ($input && isset($input['generate_prizes'])) {
     $_SESSION['prizes'] = getRandomPrizes();
+    echo json_encode(['prizes' => $_SESSION['prizes']]);
+    exit();
 }
-$prizes = $_SESSION['prizes'] ?? [];
 ?>
