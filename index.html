@@ -16,7 +16,7 @@
             <button type="submit" name="generate_prizes" class="btn btn-primary mb-3">สุ่มตัวเลขรางวัล</button>
         </form>
 
-        <?php if ($prizes): ?>
+        <?php if (!empty($prizes)): ?>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -45,7 +45,6 @@
             </table>
         <?php endif; ?>
 
-
         <form method="post" class="mt-4">
             <div class="mb-3">
                 <label for="lottery_number" class="form-label">เลขล๊อตเตอรี่</label>
@@ -58,7 +57,6 @@
             <?php
             $lottery_number = $_POST['lottery_number']; 
             $results = [];
-
 
             // ตรวจรางวัล หากถูก3หลัก
             if (strlen($lottery_number) == 3) {
