@@ -50,7 +50,7 @@ $prizes = $_SESSION['prizes'] ?? [];
 <body>
     <div class="container mt-5">
         <h1 class="mb-4">ล๊อตโต้สุ่มตัวเลข</h1>
-        <form action="random.php" method="post">
+        <form method="post">
             <button type="submit" name="generate_prizes" class="btn btn-primary mb-3">สุ่มตัวเลขรางวัล</button>
         </form>
 
